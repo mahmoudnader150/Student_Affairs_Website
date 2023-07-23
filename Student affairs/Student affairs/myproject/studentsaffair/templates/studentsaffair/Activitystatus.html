@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity status Page</title>
+    <link rel="stylesheet" href="{% static 'ActivityStatus.css' %}" />
+  </head>
+
+  <body>
+    <div class="nav">
+      <ul>
+        <li><a href="#home" class="active">Home Page</a></li>
+        <li>
+          <a href="Add_New_Student_Page.html" class="add">Add New Student</a>
+        </li>
+        <li>
+          <a href="Activitystatus.html" class="view"
+            >View Student Active/Inactive</a
+          >
+        </li>
+        <li><a href="UpdateDelete.html" class="update">Update Student</a></li>
+        <li>
+          <a href="SearchInfo_Table.html" class="search"
+            >Search For Active Students</a
+          >
+        </li>
+        <li>
+          <a href="student_assignment.html" class="student"
+            >Student Assignment Department</a
+          >
+        </li>
+      </ul>
+    </div>
+    <br />
+    <h3 class="title">Student Activity Status</h3>
+    <hr class="HORIZONTAL_LINE" />
+    <div
+      name="table"
+      style="overflow-y: auto"
+      style="overflow-x: auto"
+      class="tab"
+      id="body"
+    ></div>
+    <br />
+    <table>
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Active</th>
+        </tr>
+
+        {% for student in students %}
+        <tr class="change-status-row">
+          <td>{{student.name}}</td>
+          <td class="change-status-id">{{student.student_id}}</td>
+          <td>
+            {% if student.active == "Active" %}
+            <button class="change-status-btn">Active</button>
+            {% else %}
+            <button class="change-status-btn">InActive</button>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <form>
+      <div class="d">
+        <input type="submit" value="save" id="submission" onclick="Save()" />
+      </div>
+    </form>
+    <script src="{% static 'ActivityStatus.js' %}"></script>
+  </body>
+</html>
